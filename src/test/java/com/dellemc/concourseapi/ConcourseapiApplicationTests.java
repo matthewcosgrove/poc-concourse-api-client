@@ -21,12 +21,10 @@ public class ConcourseapiApplicationTests {
 	
 	@Test
 	public void canCallConcourseAPIForToken() throws Exception {
-//		String accessToken = authClient.login();
 		ConcourseAPIAccessToken accessToken = authClient.login();
 		assertNotNull(accessToken);
-		System.err.println(accessToken);
-//		assertNotNull(accessToken.getAccessToken());
-//		System.out.println(accessToken.getAccessToken());
+		assertNotNull(accessToken.getAccessToken());
+		System.err.println(accessToken.getAccessToken());
 	}
 
 }

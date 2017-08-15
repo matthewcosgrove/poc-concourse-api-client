@@ -1,5 +1,6 @@
 package com.dellemc.concourseapi;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -15,6 +16,9 @@ public class ConcourseapiApplicationTests {
 	@Autowired
 	AuthClient authClient;
 
+	@Autowired
+	ConcourseAPIClient concourseAPIClient;
+
 	@Test
 	public void contextLoads() {
 	}
@@ -25,6 +29,21 @@ public class ConcourseapiApplicationTests {
 		assertNotNull(accessToken);
 		assertNotNull(accessToken.getAccessToken());
 		System.err.println(accessToken.getAccessToken());
+	}
+
+	@Test
+	public void canCallConcourseAPIForBuildInfo() throws Exception {
+		ConcourseAPIAccessToken accessToken = authClient.login();
+		int buildNumber = 38;
+		String resp = concourseAPIClient.getBuildInfoForSpecificPipeline(accessToken.getAccessToken(), buildNumber );
+		assertNotNull(resp);
+		System.err.println(resp);
+
+		ConcourseAPIBuildResult buildResult = concourseAPIClient.getBuildResultForSpecificPipeline(accessToken.getAccessToken(), buildNumber);
+		int name = buildResult.getName();
+		assertNotNull(resp);
+		assertEquals(buildNumber, name);
+		System.err.println(name);
 	}
 
 }

@@ -37,15 +37,16 @@ public class ConcourseapiApplicationTests {
 	public void canCallConcourseAPIForBuildInfo() throws Exception {
 		ConcourseAPIAccessToken accessToken = authClient.login();
 		int buildNumber = 38;
-		String resp = concourseAPIClient.getBuildInfoForSpecificPipeline(accessToken.getAccessToken(), buildNumber );
+		int globalBuildIdentifier = 52;
+		String resp = concourseAPIClient.getRawBuildResult(accessToken.getAccessToken(), globalBuildIdentifier);
 		assertNotNull(resp);
 		System.err.println(resp);
 
-		ConcourseAPIBuildResult buildResult = concourseAPIClient.getBuildResultForSpecificPipeline(accessToken.getAccessToken(), buildNumber);
-		int name = buildResult.getName();
+		ConcourseAPIBuildResult buildResult = concourseAPIClient.getBuildResult(accessToken.getAccessToken(), globalBuildIdentifier);
+		int pipelineSpecificBuildNumber = buildResult.getPipelineSpecificBuildNumber();
 		assertNotNull(resp);
-		assertEquals(buildNumber, name);
-		System.err.println(name);
+		assertEquals(buildNumber, pipelineSpecificBuildNumber);
+		System.err.println(pipelineSpecificBuildNumber);
 	}
 
 }

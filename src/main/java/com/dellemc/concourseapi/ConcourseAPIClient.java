@@ -11,11 +11,12 @@ import feign.RequestLine;
 @FeignClient(name = "ConcourseAPIClient", url = "${concourse.host.url}")
 public interface ConcourseAPIClient {
 	
-	   @RequestLine("GET /api/v1/teams/zero/pipelines/zero-pivnet-to-s3/jobs/upload-tile-to-s3/builds/{buildNumber}")
+	   @RequestLine("GET /api/v1/builds/{globalBuildIdentifier}")
 	   @Headers({"Cookie: ATC-Authorization=Bearer {accessToken}"})
-	   String getBuildInfoForSpecificPipeline(@Param("accessToken") String accessToken, @Param("buildNumber") int buildNumber);
+	   String getRawBuildResult(@Param("accessToken") String accessToken, @Param("globalBuildIdentifier") int globalBuildIdentifier);
 
-	   @RequestLine("GET /api/v1/teams/zero/pipelines/zero-pivnet-to-s3/jobs/upload-tile-to-s3/builds/{buildNumber}")
+	   @RequestLine("GET /api/v1/builds/{globalBuildIdentifier}")
 	   @Headers({"Cookie: ATC-Authorization=Bearer {accessToken}"})
-	   ConcourseAPIBuildResult getBuildResultForSpecificPipeline(@Param("accessToken") String accessToken, @Param("buildNumber") int buildNumber);
+	   ConcourseAPIBuildResult getBuildResult(@Param("accessToken") String accessToken, @Param("globalBuildIdentifier") int globalBuildIdentifier);
+
 }

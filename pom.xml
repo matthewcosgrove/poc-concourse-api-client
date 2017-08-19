@@ -46,8 +46,6 @@
 			<artifactId>jersey-spring4</artifactId>
 			<version>2.26-b09</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.glassfish.jersey.inject</groupId> <artifactId>jersey-hk2</artifactId> 
-			<version>2.26-b09</version> </dependency> -->
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-sse</artifactId>

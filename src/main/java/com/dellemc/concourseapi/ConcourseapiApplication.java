@@ -1,6 +1,5 @@
 package com.dellemc.concourseapi;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -17,7 +16,6 @@ public class ConcourseapiApplication {
 	}
 
 	@Bean
-	@Autowired
 	public Contract useFeignAnnotations() {
 		// https://stackoverflow.com/questions/29985205/using-requestline-with-feign
 		return new Contract.Default();

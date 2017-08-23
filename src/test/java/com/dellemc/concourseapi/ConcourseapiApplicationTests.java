@@ -25,7 +25,7 @@ public class ConcourseapiApplicationTests {
 	@Value("${concourse.team}")
 	String concourseTeam;
 
-	int buildNumber = 38;
+	// int buildNumber = 38; // left here to show there is a difference between build number and it's identifier (which below we call globalBuildIdentifier) e.g. this test was written against build 38 with identifier 52
 	int globalBuildIdentifier = 52;
 
 	@Test
